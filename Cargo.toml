@@ -1,0 +1,11 @@
+[package]
+name = "untitled_altman"
+version = "0.1.0"
+authors = ["Aleksandr Petrosyan <a-p-petrosyan@yandex.ru>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+argparse = "0.2.2"
+reqwest = { version = "0.11.4", features = ["blocking"] }
