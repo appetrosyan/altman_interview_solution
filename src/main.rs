@@ -5,15 +5,13 @@ use std::time::Duration;
 
 fn ping(interval: u64, url: String) -> Result<(), Box<dyn std::error::Error>> {
     let mut res = reqwest::blocking::get(url)?;
-    while(true){
+    loop {
         match res.status() {
-            reqwest::StatusCode::OK => println!("Ok(200)"),
-            _ => println!("{}", res.status())
+            reqwest::StatusCode::OK => println!("Ok(200)"), // Он же код 200.
+            _ => println!("Err({})", res.status())
         }
         std::thread::sleep(Duration::new(interval, 0));
     }
-
-    Ok(())
 }
 
 fn parse() -> (u64, String) {
@@ -36,9 +34,9 @@ fn main() -> Result<(), Box<dyn Error>>{
     let url_parsed = reqwest::Url::parse(url.as_str());
     match url_parsed {
         Ok(url) => {
-            let ping_result = ping(interval, url.to_string());
+            ping(interval, url.to_string());
         }
-        Err(e) => {
+        Err(_e) => {
             println!("URL parse error")
         }
     }
